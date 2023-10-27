@@ -1,0 +1,117 @@
+
+/* Add your CSS styles here */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    }
+    
+    h1 {
+    text-align: center;
+    margin: 20px 0;
+    }
+    
+    h2 {
+    margin: 10px 0;
+    }
+    
+    form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    }
+    
+    select, input[type="number"], input[type="submit"] {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    }
+    
+    select, input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    }
+    
+    select:hover, input[type="submit"]:hover {
+    background-color: #0056b3;
+    }
+    
+    input[type="submit"] {
+    border: none;
+    }
+    
+    p {
+    color: red;
+    font-weight: bold;
+    }
+    
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    }
+    
+    table, th, td {
+    border: 1px solid #ccc;
+    padding:20%;
+    }
+    
+    th, td {
+    padding: 10px;
+    text-align: center;
+    }
+    
+    th {
+    background-color: #007bff;
+    color: #fff;
+    }
+        /* Style for matrix boxes */
+        .table-box {
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        
+        /* Style for matrix tables */
+        .table-box table {
+            border-collapse: collapse;
+        }
+        
+        .table-box table, .table-box td, .table-box th {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        /* Style for result section */
+        #result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        
+        #result p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        /* Style for scalar input */
+        #scalar {
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }

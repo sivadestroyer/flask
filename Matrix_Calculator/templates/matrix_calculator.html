@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matrix Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Matrix Calculator</h1>
+
+    <form method="post" action="/calculate">
+        <h2>Select Operation:</h2>
+        <select name="operation" id="operation" required>
+            <option value="addition">Addition</option>
+            <option value="subtract">Subtraction</option>
+            <option value="multiply">Multiplication</option>
+            <option value="scalar_multiply">Scalar Multiplication</option>
+            <option value="diagonal">Diagonal Elements</option>
+            <option value="non_diagonal">Non-Diagonal Elements</option>
+            <option value="transpose">Transpose</option>
+            <option value="eigenvector">EigenVector</option>
+            <option value="eigenvalue">Eigenvalue</option>
+            
+        </select>
+        
+        <br>
+        <h2>Enter Dimensions for Matrix 1:</h2>
+        <label for="rows1">Number of Rows: </label>
+        <input type="number" name="rows1" id="rows1" required>
+
+        <label for="cols1">Number of Columns: </label>
+        <input type="number" name="cols1" id="cols1" required>
+
+        <h2>Enter Matrix 1:</h2>
+        <div id="matrix1" class="matrix-grid"></div>
+
+       
+        <div id="matrix2-container">
+            <h2>Enter Dimensions for Matrix 2:</h2>
+            <label for="rows2">Number of Rows: </label>
+            <input type="number" name="rows2" id="rows2" >
+
+            <label for="cols2">Number of Columns: </label>
+            <input type="number" name="cols2" id="cols2" >
+            
+            <h2>Enter Matrix 2:</h2>
+            <div id="matrix2" class="matrix-grid"></div>
+        </div>
+
+        <br>
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <h2>Result:</h2>
+    {% if eigenval %}
+
+    <p style="color: red;">eigenvalue = {{ eigenval }}</p>
+    {% endif %}
+    {% if eigenvector %}
+
+    <p style="color: red;">eigenvalue = {{ eigenvector }}</p>
+    {% endif %}
+    <div id="result">
+        {% if result %}
+            <div class="table-box">
+                <p>Result:</p>
+                <table>
+                    {% for row in result %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        var operation = document.getElementById("operation");
+
+        function createMatrixInputs(targetId, rows, cols) {
+            const target = document.getElementById(targetId);
+            target.innerHTML = '';
+    
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.name = `${targetId}_${i}_${j}`;
+                    input.placeholder = `Enter value for Row ${i + 1}, Column ${j + 1}`;
+                    target.appendChild(input);
+                }
+                target.appendChild(document.createElement('br'));
+            }
+        }
+    
+        function hideMatrix2Inputs() {
+            const matrix2Container = document.getElementById('matrix2-container');
+            matrix2Container.style.display = 'none';
+        }
+    
+        function showMatrix2Inputs() {
+            const matrix2Container = document.getElementById('matrix2-container');
+            matrix2Container.style.display = 'block';
+        }
+       
+        document.getElementById('rows1').addEventListener('change', function() {
+            const rows = this.value;
+            const cols = document.getElementById('cols1').value;
+            createMatrixInputs('matrix1', rows, cols);
+        });
+    
+        document.getElementById('cols1').addEventListener('change', function() {
+            const cols = this.value;
+            const rows = document.getElementById('rows1').value;
+            createMatrixInputs('matrix1', rows, cols);
+        });
+            document.getElementById('rows2').addEventListener('change', function() {
+                const rows = this.value;
+                const cols = document.getElementById('cols2').value;
+                createMatrixInputs('matrix2', rows, cols);
+                console.log("i am in")
+            });
+    
+            document.getElementById('cols2').addEventListener('change', function() {
+                const cols = this.value;
+                const rows = document.getElementById('rows2').value;
+                createMatrixInputs('matrix2', rows, cols);
+            });
+ 
+        
+            document.getElementById('operation').addEventListener('change', function() {
+                const selectedOperation = this.value;
+                if (selectedOperation === 'addition' || selectedOperation === 'subtract' || selectedOperation === 'multiply') {
+                    showMatrix2Inputs();
+                } else {
+                    hideMatrix2Inputs();
+                }
+            });
+  
+
+    </script>
+    
+</body>
+</html>
